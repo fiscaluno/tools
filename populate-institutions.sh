@@ -1,5 +1,7 @@
 #!/bin/bash
 function postInstitution {
+	FLOOR=111111111111
+	CEILING=999999999999
 	NAME=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
 	curl -X POST \
 	  https://athena-bff.herokuapp.com/v1/institutions \
@@ -13,7 +15,15 @@ function postInstitution {
 	    	"cnpj": "59.069.914/0001-51",
 	    	"address": "Rua '"$NAME"', '"$RANDOM"' - Barra Funda",
 	    	"city": "São Paulo",
-	    	"province": "SP"
+	    	"province": "SP",
+		"emails": [
+			"institution'"$NAME"'@gmail.com",
+			"institution'"$NAME"'@institution.edu.br"
+		],
+		"phones": [
+			"+'"$(shuf -i $FLOOR-$CEILING -n 1)"'",
+			"+'"$(shuf -i $FLOOR-$CEILING -n 1)"'"
+		]
 	   }'
 }
 
