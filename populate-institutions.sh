@@ -2,7 +2,7 @@
 function postInstitution {
 	NAME=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 10 | head -n 1)
 	curl -X POST \
-	  https://aiolia.herokuapp.com/institution \
+	  https://athena-bff.herokuapp.com/v1/institutions \
 	  -H 'cache-control: no-cache' \
 	  -H 'content-type: application/json' \
 	  -H 'postman-token: a0ff56d8-4393-d1a3-7960-fd27fc61edae' \
